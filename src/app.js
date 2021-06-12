@@ -1,11 +1,14 @@
 const express = require('express');
-const app = express();
 const hbs = require("hbs")
 const path = require("path");
-const viewPath = path.join(__dirname, "../template/views");
-const partialPath = path.join(__dirname, "../template/partials");
 require("./db/mongoose");
 const User = require("./db/model/user");
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+const viewPath = path.join(__dirname, "../template/views");
+const partialPath = path.join(__dirname, "../template/partials");
 
 
 app.set("view engine", "hbs");
@@ -31,6 +34,6 @@ app.post("/register", async (req, res) => {
     }
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("running at port 3000");
 })
